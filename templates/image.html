@@ -1,0 +1,172 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Curved & Colored Drop Shadow </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        video {
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+            /*加滤镜*//* filter: blur(15 px);
+            //背景模糊设置 *//* -webkit - filter: grayscale(100 %);
+                /*filter: grayscale(100 % ); // 背景灰度设置*/
+            z-index: -11;
+        }
+
+        source {
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: black;
+            text-align: center;
+        }
+
+        .lin {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 1000px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        label {
+            display: block;
+            width: 100%;
+            padding: 1%;
+            font-size: 25px;
+            color: black;
+            height: 100%;
+        }
+
+        .container {
+            margin:0px auto;
+            border:1px solid slategray;
+            width: 100%;
+        }
+        select{
+            float: right;
+            background-color:transparent;
+        }
+        span{
+            float: right;
+            background-color:transparent;
+        }
+        input{
+            float: right;
+
+            background-color:transparent;
+
+
+        }
+        .ac{
+             margin:0px auto;
+            border:1px solid slategray;
+            width: 100%;
+        }
+        h2{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<video id="v1" autoplay loop muted>
+    <source src="../static/linj.mp4"/>
+</video>
+<div class="lin">
+    <div class="linjj">
+        <br><br><br><br>
+        <h1>深圳各区房价预测</h1>
+        <br><br><br>
+        <div class="container">
+            <form action="/predict" method="POST">
+                <div>
+                    <label for="qy">选择区域: &nbsp;
+                        <select name="district" >
+                            <option value="">选择区域</option>
+                            <option value="0">南山</option>
+                            <option value="1">宝安</option>
+                            <option value="2">大鹏新区</option>
+                            <option value="3">光明</option>
+                            <option value="4">龙岗</option>
+                            <option value="5">罗湖</option>
+                            <option value="6">龙华</option>
+                            <option value="7">坪山</option>
+                            <option value="8">盐田</option>
+                            <option value="9">福田</option>
+                        </select>
+                    </label>
+                </div>
+                <hr>
+                <div>
+                    <label for="lf">楼房高度:&nbsp;
+                        <select name="C_floor">
+                            <option value="0">low</option>
+                            <option value="1">middle</option>
+                            <option value="2">high</option>
+                        </select>
+                    </label>
+                </div>
+                <hr>
+                <div>
+                    <label for="fj">房屋的房间数:&nbsp;
+                        <input class="kj" type="text" name="roomnum" placeholder="您需要的房屋的房间数">
+                    </label>
+                </div>
+                <hr>
+                <div><label for="kt">客厅数量:&nbsp;
+                    <input class="kj" type="text" name="hall" placeholder="您需要的客厅数量"></label></div>
+                <hr>
+                <div><label for="mj">房屋面积:&nbsp;
+                    <input class="kj" type="text" name="AREA" placeholder="你需要的房屋面积"></label>
+                </div>
+                <hr>
+                <div><label for="xf">是否是学区房:&nbsp;
+                    <span>是<input type="radio" name="school" value="1"></span>
+                    <span>否<input type="radio" name="school" value="0"></span>
+                </label>
+                </div>
+                <hr>
+                <div><label for="dt">是否靠近地铁:&nbsp;<span>是<input type="radio" name="subway" value="1"></span>&nbsp;<span>否<input
+                        type="radio" name="subway" value="0"></span></label>
+                </div>
+                <hr>
+                <div>
+                    <label style="text-align: center">
+                    <button style="margin:0px auto;background-color:transparent;font-size: 20px;">预测房价</button></label></div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <br><br>
+                            {% if prediction %}
+               <div class="ac">
+                        <h2 class="text-warning">该区房价大致为{{ prediction }}万/平方米 </h2>
+                    </div>
+                {% endif %}
+        </div>
+</div>
+</body>
+</html>
